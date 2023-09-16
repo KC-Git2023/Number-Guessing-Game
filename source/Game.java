@@ -49,6 +49,7 @@ public class Game {
 	}
 	
 	
+	
 	public static void main(String[] args) {
 		var g = new Game();
 		for(int i = 0; i< 1000; i++){
