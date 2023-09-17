@@ -24,8 +24,18 @@ public class Game {
 	}
 	
 	public int comapreGuessAndTarget(int userGuess){
-		//....
-		return 1;
+		int numberToReturn;
+		
+		if(userGuess < targetNumber) 
+			numberToReturn = -1;
+		else if(userGuess == targetNumber) 
+			numberToReturn = 0;
+		else 
+			numberToReturn = 1;
+		
+		updateNumberOfGuess();
+		
+		return numberToReturn;
 	}
 	
 	public void updateNumberOfGuess(){
@@ -44,18 +54,66 @@ public class Game {
 		return UPPERBOUND;
 	}
 	
-	private GameState getState(){
+	public GameState getState(){
 		return state;
+	}
+	
+	public void setState(GameState stateToUpdate) {
+		state = stateToUpdate;
 	}
 	
 	
 	
 	public static void main(String[] args) {
 		var g = new Game();
+		int guessAndTarget;
+		
+		System.out.println("NumberOfGuess is  " + g.getNumberOfGuess());
+		System.out.println();
+		
 		for(int i = 0; i< 1000; i++){
 			g.targetNumber = g.generateTargetNumber();
 			if(g.targetNumber < g.LOWERBOUND)
 				System.out.println("This sentence shouldn't display!");
 		}
+		
+		System.out.println("Target is " + g.targetNumber);
+		System.out.println();
+		
+		guessAndTarget = g.comapreGuessAndTarget(1);
+		System.out.println("Result of comapreGuessAndTarget(1) is " + 
+											guessAndTarget);
+		System.out.println();								
+		
+		guessAndTarget = g.comapreGuessAndTarget(100);
+		System.out.println("Result of comapreGuessAndTarget(100) is " + 
+											guessAndTarget);
+		System.out.println();
+		
+		guessAndTarget = g.comapreGuessAndTarget(g.targetNumber);
+		System.out.println("Result of comapreGuessAndTarget(g.targetNumber) is " 
+										+ guessAndTarget);
+		System.out.println();
+		
+		System.out.println("NumberOfGuess after 3 attempts " + 
+												g.getNumberOfGuess());
+		System.out.println();
+		
+		System.out.println("LowerBound is  " + g.getLowerBound());
+		System.out.println();
+		
+		System.out.println("UpperBound is  " + g.getUpperBound());
+		System.out.println();
+		
+		System.out.println("GameState is  " + g.getState());
+		System.out.println();
+		
+		System.out.println("Edit Game State to End");
+		g.setState(GameState.END);
+		System.out.println("GameState is  " + g.getState());
+		
+		
+		
+		
 	}
 }
