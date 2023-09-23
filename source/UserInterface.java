@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 public class UserInterface {
 	Scanner sc;
 	
-	UserInterface() {
+	public UserInterface() {
 		sc = new Scanner(System.in);
 	}
 	
@@ -53,15 +53,32 @@ public class UserInterface {
 		System.out.println("Continue?");
 	}
 	
-	public String getContinueOption() {
-		var continueOption = sc.next();
+	public int getContinueOption() {
+		var continueOption = sc.nextInt();
 		return continueOption;
 	}
 	
+	public int getIntInput() {
+		int num;
+		System.out.println("Please input your option");
+		
+		do {
+				try {
+				num = sc.nextInt();
+				break;
+			} catch(InputMismatchException ex){
+					System.out.println("Please input integer");
+							sc.nextLine();
+					
+			}
+		} while(true);
+		
+		return num;
+   }
+	
 	public static void main(String[] args) {
 		var ui = new UserInterface();
-		int menuInput, userGuess;
-		String continueOption;
+		int menuInput, userGuess, continueOption;
 		
 		ui.showMenu();
 		menuInput = ui.getMenuInput();
