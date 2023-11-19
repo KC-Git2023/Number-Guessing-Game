@@ -18,13 +18,12 @@ public class UserInterface {
 	
 	private int getIntInput() {
 		int num;
-		System.out.print("Please Input your option: ");
 		do {
 				try {
 					num = sc.nextInt();
 				break;
 			} catch(InputMismatchException ex){
-					System.out.println("Please input integer");
+					System.out.print("Please input integer: ");
 					sc.nextLine();					
 			}
 		} while(true);
@@ -36,7 +35,8 @@ public class UserInterface {
 	{
 		int num;
 		do {
-			System.out.printf("Please Input your option between %d and %d\n", startOfRange, endOfRange);
+			System.out.printf("Please Input your option between %d and %d: ", 
+			                startOfRange, endOfRange);
 			
 			num = getIntInput();
 			
@@ -50,13 +50,13 @@ public class UserInterface {
 	  System.out.println("1.Start Game");
 		System.out.println("2.Exit");
 		
-		var userMenuInput = getIntInput();
+		var userMenuInput = getIntInputWithinRangeOfOption(startOfMenuOption, endOfMenuOption);
 		return userMenuInput;
 	}
 	
 	
 	public int getUserGuess() {
-	  System.out.println("Please input a guess");
+	  System.out.print("Please input a guess: ");
 	    
 		var userGuess = getIntInput();
 		return userGuess;
@@ -90,12 +90,10 @@ public class UserInterface {
 		System.out.println("1.Yes");
 		System.out.println("2.No");
 	    
-		var continueOption = getIntInput();
+		var continueOption = getIntInputWithinRangeOfOption(startOfContinueOption, 
+		                        endOfContinueOption);
 		return continueOption;
 	}
-	
-	
-	
 	
 	public static void main(String[] args) {
 		var ui = new UserInterface();
@@ -131,8 +129,7 @@ public class UserInterface {
 		continueOption = ui.getUserContinueOption();
 		System.out.println("User continue Option is " + continueOption);
 		
-		
-		
 	}
 	
 }
+	

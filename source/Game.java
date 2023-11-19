@@ -23,6 +23,12 @@ public class Game {
 		return integer;
 	}
 	
+	public boolean isGuessOutOfBound(int userGuess) {
+		if( (userGuess < LOWERBOUND) || (userGuess > UPPERBOUND))
+			return true;
+		return false;
+	}
+	
 	public int comapreGuessAndTarget(int userGuess){
 		int numberToReturn;
 		
