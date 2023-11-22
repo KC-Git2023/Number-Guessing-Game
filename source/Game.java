@@ -29,7 +29,7 @@ public class Game {
 		return false;
 	}
 	
-	public int comapreGuessAndTarget(int userGuess){
+	public int compareGuessAndTarget(int userGuess){
 		int numberToReturn;
 		
 		if(userGuess < targetNumber) 
@@ -68,6 +68,10 @@ public class Game {
 		state = stateToUpdate;
 	}
 	
+	public int getTargetNumber() {
+		return targetNumber;
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -86,18 +90,18 @@ public class Game {
 		System.out.println("Target is " + g.targetNumber);
 		System.out.println();
 		
-		guessAndTarget = g.comapreGuessAndTarget(1);
-		System.out.println("Result of comapreGuessAndTarget(1) is " + 
+		guessAndTarget = g.compareGuessAndTarget(1);
+		System.out.println("Result of compareGuessAndTarget(1) is " + 
 											guessAndTarget);
 		System.out.println();								
 		
-		guessAndTarget = g.comapreGuessAndTarget(100);
-		System.out.println("Result of comapreGuessAndTarget(100) is " + 
+		guessAndTarget = g.compareGuessAndTarget(100);
+		System.out.println("Result of compareGuessAndTarget(100) is " + 
 											guessAndTarget);
 		System.out.println();
 		
-		guessAndTarget = g.comapreGuessAndTarget(g.targetNumber);
-		System.out.println("Result of comapreGuessAndTarget(g.targetNumber) is " 
+		guessAndTarget = g.compareGuessAndTarget(g.targetNumber);
+		System.out.println("Result of compareGuessAndTarget(g.targetNumber) is " 
 										+ guessAndTarget);
 		System.out.println();
 		
