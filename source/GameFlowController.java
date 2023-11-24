@@ -16,26 +16,57 @@ public class GameFlowController {
 	private void runGame() {
 		int userGuess;
 		int guessCompareToTarget;
+		int remainingNumberOfAttempts;
 		
 		do {
 			System.out.println("Target is " + game.getTargetNumber());
-			userGuess = ui.getUserGuess();
+			userGuess = ui.getUserGuess(game.getLowerBound(), 
+													game.getUpperBound());
 			
 			if(!game.isGuessOutOfBound(userGuess)) {
 				guessCompareToTarget = 
 								game.compareGuessAndTarget(userGuess);
+								
+				remainingNumberOfAttempts = game.getRemainingNumberOfAttempts();
+				
+				if(remainingNumberOfAttempts == 0) {
+					setEndState();
+					break;
+				}
+			
 				
 				if(guessCompareToTarget != 0)
-					ui.printHintMessage(guessCompareToTarget);
+					ui.printHintMessage(guessCompareToTarget, 
+											remainingNumberOfAttempts);
 				else
-					game.setState(GameState.END);		
+					setEndState();	
 			}
 			else 
 				ui.printOutOfLimitMessage(game.getLowerBound(), 
 												game.getUpperBound());	
 		} while(game.getState() != GameState.END);
 		
+		afterGame();
+	
 	}
+	
+	private void afterGame() {
+		int continueOption;
+		ui.displayResult(game.getIsUserGuesstheTarget(), 
+							game.getNumberOfGuess());
+							
+		continueOption = ui.getUserContinueOption();
+		
+		if(continueOption == 1)
+			reset();
+	}
+	
+	
+	private void setEndState() {
+		game.setState(GameState.END);
+	}
+	
+	
 	
 	private void reset() {
 		int userContinueOption = ui.getUserContinueOption();

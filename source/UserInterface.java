@@ -35,10 +35,13 @@ public class UserInterface {
 	{
 		int num;
 		do {
-			System.out.printf("Please Input your option between %d and %d: ", 
+			System.out.printf("\nPlease Input your option between %d and %d: ", 
 			                startOfRange, endOfRange);
 			
 			num = getIntInput();
+			
+			if((num < startOfRange) || (num > endOfRange))
+				System.out.println("Your input is outside the range of options!");
 			
 		} while((num < startOfRange) || (num > endOfRange));
 		
@@ -55,38 +58,44 @@ public class UserInterface {
 	}
 	
 	
-	public int getUserGuess() {
-	  System.out.print("Please input a guess: ");
+	public int getUserGuess(int lowerBound, int upperBound) {
+	  System.out.printf("\nPlease input a guess that between " + 
+				"%d and %d: ", lowerBound, upperBound);
 	    
 		var userGuess = getIntInput();
 		return userGuess;
 	}
 	
-	public void printHintMessage(int guessCompareToTarget) {
-		if (guessCompareToTarget < 0)
-			System.out.println("Try again! Your guess was too low!");
-		
-		else if (guessCompareToTarget > 0)
-			System.out.println("Try again! Your guess was too high!");
+	public void printHintMessage(int guessCompareToTarget, int remainingNumberOfAttempts) {
+		if(guessCompareToTarget != 0){
+			if (guessCompareToTarget < 0)
+				System.out.println("\nTry again! Your guess was too low!");
+			
+			else if (guessCompareToTarget > 0)
+				System.out.println("\nTry again! Your guess was too high!");
+			
+			System.out.println("\nThe remaining number of attempts is " +
+												remainingNumberOfAttempts);
+		}
 	}
 	
 	public void printOutOfLimitMessage(int lowerBound, int upperBound) {
-		System.out.println("Your guess is outside the limit.");
+		System.out.println("\nYour guess is outside the limit.");
 		System.out.printf("The range is from %d to %d.\n", 
 											lowerBound, upperBound);
 	}
 	
 	public void displayResult(boolean guessCorrectness, int numberOfGuess) {
 		if(guessCorrectness)
-			System.out.printf("Contration! You guessed the correct "
+			System.out.printf("\nContration! You guessed the correct "
 					+ "target number in %d attempts\n", numberOfGuess);
 		else 
-			System.out.println("Unfortunately, you didn't guess it.");
+			System.out.println("\nUnfortunately, you didn't guess it.");
 	}
 	
 	
 	public int getUserContinueOption() {
-		System.out.println("Continue?");
+		System.out.println("\nContinue?");
 		System.out.println("1.Yes");
 		System.out.println("2.No");
 	    
@@ -104,14 +113,16 @@ public class UserInterface {
 		
 		System.out.println();
 		
-		userGuess = ui.getUserGuess();
-		System.out.println("User guess is " + userGuess);
+		//userGuess = ui.getUserGuess();
+		//System.out.println("User guess is " + userGuess);
 		
 		System.out.println();
 		
+		/*
 		ui.printHintMessage(-1);
 		ui.printHintMessage(0);
 		ui.printHintMessage(1);
+		*/
 		
 		System.out.println();
 		

@@ -2,16 +2,18 @@ import java.util.Random;
 public class Game {
 	private final int LOWERBOUND = 1;
 	private final int UPPERBOUND = 100;
-	private final int NUMBEROFGUESSLIMIT = 5;
+	private final int NUMBEROFATTEMPTLIMIT = 5;
 	
 	private int targetNumber;
 	private int numberOfGuess;
 	private GameState state;
+	private boolean isUserGuesstheTarget;
 	
 	public Game() {
 		targetNumber = generateTargetNumber();
 		numberOfGuess = 0;
 		state = GameState.RUNNING;
+		isUserGuesstheTarget = false;
 	}
 	
 	private int generateTargetNumber() {
@@ -44,9 +46,10 @@ public class Game {
 		return numberToReturn;
 	}
 	
-	public void updateNumberOfGuess(){
+	private void updateNumberOfGuess(){
 		numberOfGuess++;
 	}
+	
 	
 	public int getNumberOfGuess() {
 		return numberOfGuess;
@@ -70,6 +73,19 @@ public class Game {
 	
 	public int getTargetNumber() {
 		return targetNumber;
+	}
+	
+	public int getRemainingNumberOfAttempts() {
+		return (NUMBEROFATTEMPTLIMIT - numberOfGuess);
+	}
+	
+	public void setUserGuesstheTarget(boolean correctness) {
+		isUserGuesstheTarget = correctness;
+		
+	}
+	
+	public boolean getIsUserGuesstheTarget() {
+		return isUserGuesstheTarget;
 	}
 	
 	
