@@ -52,6 +52,9 @@ public class GameFlowController {
 	
 	private void afterGame() {
 		int continueOption;
+		
+		setGameUserGuessTheTarget();
+		
 		ui.displayResult(game.getIsUserGuesstheTarget(), 
 							game.getNumberOfGuess());
 							
@@ -64,6 +67,11 @@ public class GameFlowController {
 	
 	private void setEndState() {
 		game.setState(GameState.END);
+	}
+	
+	private void setGameUserGuessTheTarget() {
+		if(game.getRemainingNumberOfAttempts() > 0)
+			game.setUserGuesstheTarget(true);
 	}
 	
 	
