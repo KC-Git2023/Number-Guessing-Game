@@ -21,7 +21,7 @@ public class UserInterface {
 		do {
 				try {
 					num = sc.nextInt();
-				break;
+					break;
 			} catch(InputMismatchException ex){
 					System.out.print("Please input integer: ");
 					sc.nextLine();					
@@ -59,10 +59,11 @@ public class UserInterface {
 	
 	
 	public int getUserGuess(int lowerBound, int upperBound) {
-	  System.out.printf("\nPlease input a guess that between " + 
-				"%d and %d: ", lowerBound, upperBound);
+	  //System.out.printf("\nPlease input a guess that between " + 
+		//		"%d and %d: ", lowerBound, upperBound);
 	    
-		var userGuess = getIntInput();
+		//var userGuess = getIntInput();
+		var userGuess = getIntInputWithinRangeOfOption(lowerBound, upperBound);
 		return userGuess;
 	}
 	
@@ -80,8 +81,8 @@ public class UserInterface {
 	}
 	
 	public void printOutOfLimitMessage(int lowerBound, int upperBound) {
-		System.out.println("\nYour guess is outside the limit.");
-		System.out.printf("The range is from %d to %d.\n", 
+		//System.out.println("\nYour guess is outside the limit.");
+		System.out.printf("\nYour guess is outside the limit. The range is from %d to %d.\n", 
 											lowerBound, upperBound);
 	}
 	

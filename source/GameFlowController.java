@@ -9,17 +9,17 @@ public class GameFlowController {
 	
 	public void startGame() {
 		int userOption = ui.getMenuInput();
-		if(userOption == 1)  runGame();
+		if(userOption == 1)  handleGameFlow();
 		
 	}
 	
-	private void runGame() {
+	private void handleGameFlow() {
 		int userGuess;
 		int guessCompareToTarget;
 		int remainingNumberOfAttempts;
 		
 		do {
-			System.out.println("Target is " + game.getTargetNumber());
+			//System.out.println("Target is " + game.getTargetNumber());
 			userGuess = ui.getUserGuess(game.getLowerBound(), 
 													game.getUpperBound());
 			
@@ -77,16 +77,12 @@ public class GameFlowController {
 	
 	
 	private void reset() {
-		int userContinueOption = ui.getUserContinueOption();
+		game = null;
+		ui = null;
 		
-		if(userContinueOption == 1) {
-			game = null;
-			ui = null;
-			
-			game = new Game();
-			ui = new UserInterface();
-			runGame();
-		}	
+		game = new Game();
+		ui = new UserInterface();
+		handleGameFlow();
 		
 	}
 	
