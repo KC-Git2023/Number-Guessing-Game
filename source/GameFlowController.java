@@ -2,9 +2,9 @@ public class GameFlowController {
 	Game game;
 	UserInterface ui;
 	
-	public GameFlowController() {
-		game = new Game();
-		ui = new UserInterface();
+	public GameFlowController(Game game, UserInterface ui) {
+		this.game = game;
+		this.ui = ui;
 	}
 	
 	public void startGame() {
@@ -19,7 +19,7 @@ public class GameFlowController {
 		int remainingNumberOfAttempts;
 		
 		do {
-			//System.out.println("Target is " + game.getTargetNumber());
+			System.out.println("Target is " + game.getTargetNumber());
 			userGuess = ui.getUserGuess(game.getLowerBound(), 
 													game.getUpperBound());
 			
