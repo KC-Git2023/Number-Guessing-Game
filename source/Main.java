@@ -1,7 +1,7 @@
 public class Main {
 	public static void main(String[] args) {
 		var game = new Game();
-		var ui = new UserInterface();
+		UserInterface ui = new CommandLineInterface();
 		
 		var flowController = new GameFlowController(game, ui);
 		

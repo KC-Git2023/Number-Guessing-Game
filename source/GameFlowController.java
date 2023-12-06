@@ -44,7 +44,7 @@ public class GameFlowController {
 			else 
 				ui.printOutOfLimitMessage(game.getLowerBound(), 
 												game.getUpperBound());	
-		} while(game.getState() != GameState.END);
+		} while(isGameInProgress());
 		
 		afterGame();
 	
@@ -74,6 +74,10 @@ public class GameFlowController {
 			game.setUserGuesstheTarget(true);
 	}
 	
+	private boolean isGameInProgress() {
+		return (game.getState() != GameState.END);
+	}
+	
 	
 	
 	private void reset() {
@@ -81,7 +85,7 @@ public class GameFlowController {
 		ui = null;
 		
 		game = new Game();
-		ui = new UserInterface();
+		ui = new CommandLineInterface();
 		handleGameFlow();
 		
 	}
